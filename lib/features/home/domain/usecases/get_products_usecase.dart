@@ -6,11 +6,8 @@ import 'package:elevate_cycle6/features/home/domain/repo/home_repo.dart';
 class GetProductsUseCase {
   GetProductsUseCase(this.homeRepo);
   HomeRepo homeRepo;
-  Future<List<ProductEntity>> call({String categoryId = ''}) {
-    log(
-      'getProducts called with categoryId: $categoryId',
-      name: 'GetProductsUseCase',
-    );
-    return Future.value([]);
+  Future<List<ProductEntity>> call({String categoryId = ''}) async {
+    final List<ProductEntity> productsList = await homeRepo.getProducts();
+    return productsList;
   }
 }

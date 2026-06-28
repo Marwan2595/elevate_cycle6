@@ -1,4 +1,7 @@
 import 'package:elevate_cycle6/core/constants/ui_strings.dart';
+import 'package:elevate_cycle6/features/home/api/client/home_api_client.dart';
+import 'package:elevate_cycle6/features/home/api/datasource/local/home_local_datasource_impl.dart';
+import 'package:elevate_cycle6/features/home/api/datasource/remote/home_remote_datasource_impl.dart';
 import 'package:elevate_cycle6/features/home/data/repo/home_repo_impl.dart';
 import 'package:elevate_cycle6/features/home/domain/usecases/get_categories_usecase.dart';
 import 'package:elevate_cycle6/features/home/domain/usecases/get_products_usecase.dart';
@@ -11,7 +14,12 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     HomeViewModel viewModel = HomeViewModel(
-      GetProductsUseCase(HomeRepoImpl()),
+      GetProductsUseCase(
+        HomeRepoImpl(
+          HomeRemoteDataSourceImpl(HomeApiClient()),
+          HomeLocalDataSourceImpl(),
+        ),
+      ),
       GetCategoriesUseCase(),
     );
     viewModel.getProducts();
@@ -19,3 +27,8 @@ class HomeView extends StatelessWidget {
     return const Scaffold(body: Center(child: Text(UiStrings.appName)));
   }
 }
+
+//Api Call (Retrofit --> ApiClient)
+//Handle Success/Error in Api (Globally)
+//Handle State (Multiple Api calls) (Globally)
+//Dependency Injection

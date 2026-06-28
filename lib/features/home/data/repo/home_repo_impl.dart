@@ -1,11 +1,30 @@
+import 'package:elevate_cycle6/features/home/data/datasource/local/home_local_datasource.dart';
+import 'package:elevate_cycle6/features/home/data/datasource/remote/home_remote_datasource.dart';
+import 'package:elevate_cycle6/features/home/data/models/product_dto.dart';
 import 'package:elevate_cycle6/features/home/domain/entities/product_entity.dart';
 import 'package:elevate_cycle6/features/home/domain/repo/home_repo.dart';
 
 class HomeRepoImpl implements HomeRepo {
-  @override
+  HomeRepoImpl(this.remoteDatasource, this.localDatasource);
+  final HomeRemoteDataSource remoteDatasource;
+  final HomeLocalDataSource localDatasource;
 
+  @override
   Future<List<ProductEntity>> getProducts() async {
-    return Future.value([]);
+    //check for internet connection X
+    //make function call from datasource
+    //2 cases (success, error) X
+    //cache productDto list X
+    //convert dto list to entity list
+    //return products entity list
+
+    final List<ProductDTO> productsDTOList = await remoteDatasource
+        .getProducts();
+    final List<ProductEntity> productsEntityList = productsDTOList
+        .map((dto) => dto.toDomain())
+        .toList();
+
+    return productsEntityList;
   }
 
   @override
