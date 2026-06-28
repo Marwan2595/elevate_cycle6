@@ -1,7 +1,9 @@
+import 'package:elevate_cycle6/config/di/di.dart';
 import 'package:elevate_cycle6/features/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
+  configureDependencies();
   runApp(const MainApp());
 }
 

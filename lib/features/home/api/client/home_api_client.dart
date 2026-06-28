@@ -1,5 +1,7 @@
 import 'package:elevate_cycle6/features/home/data/models/product_dto.dart';
+import 'package:injectable/injectable.dart';
 
+@lazySingleton
 class HomeApiClient {
   Future<List<ProductDTO>> getProduct() async {
     await Future.delayed(Duration(seconds: 2));

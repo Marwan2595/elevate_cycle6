@@ -3,7 +3,9 @@ import 'package:elevate_cycle6/features/home/data/datasource/remote/home_remote_
 import 'package:elevate_cycle6/features/home/data/models/product_dto.dart';
 import 'package:elevate_cycle6/features/home/domain/entities/product_entity.dart';
 import 'package:elevate_cycle6/features/home/domain/repo/home_repo.dart';
+import 'package:injectable/injectable.dart';
 
+@LazySingleton(as: HomeRepo)
 class HomeRepoImpl implements HomeRepo {
   HomeRepoImpl(this.remoteDatasource, this.localDatasource);
   final HomeRemoteDataSource remoteDatasource;

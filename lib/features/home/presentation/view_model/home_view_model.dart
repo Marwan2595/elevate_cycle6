@@ -3,7 +3,9 @@ import 'dart:developer';
 import 'package:elevate_cycle6/features/home/domain/entities/product_entity.dart';
 import 'package:elevate_cycle6/features/home/domain/usecases/get_categories_usecase.dart';
 import 'package:elevate_cycle6/features/home/domain/usecases/get_products_usecase.dart';
+import 'package:injectable/injectable.dart';
 
+@injectable
 class HomeViewModel {
   final GetProductsUseCase getProductsUseCase;
   final GetCategoriesUseCase getCategoriesUseCase;
@@ -15,7 +17,7 @@ class HomeViewModel {
     //loading
     final List<ProductEntity> productList = await getProductsUseCase();
 
-    productList.forEach((product)=>log(product.toString()));
+    productList.forEach((product) => log(product.toString()));
 
     //success --- error
   }
