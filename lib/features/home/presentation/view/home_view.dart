@@ -15,7 +15,7 @@ class HomeView extends StatelessWidget {
   }
 }
 
-//Api Call (Retrofit --> ApiClient)
+//Api Call (Retrofit --> ApiClient) (DONE)
 //Handle Success/Error in Api (Globally)
-//Handle State (Multiple Api calls) (Globally)
+//Handle State Cubit (Multiple Api calls) (Globally)
 //Dependency Injection DONE

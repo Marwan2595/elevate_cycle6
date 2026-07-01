@@ -17,7 +17,9 @@ class HomeViewModel {
     //loading
     final List<ProductEntity> productList = await getProductsUseCase();
 
-    productList.forEach((product) => log(product.toString()));
+    for (var product in productList) {
+      log(product.toString());
+    }
 
     //success --- error
   }

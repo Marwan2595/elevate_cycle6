@@ -1,45 +1,79 @@
+import 'package:elevate_cycle6/features/home/data/models/products_response.dart';
 import 'package:elevate_cycle6/features/home/domain/entities/product_entity.dart';
+import 'package:json_annotation/json_annotation.dart';
+part 'product_dto.g.dart';
 
+@JsonSerializable()
 class ProductDTO {
-  final int? id;
-  final String? name;
-  final String? description;
-  final double? price;
-  final String? imageUrl;
-  final String? category;
-  final double? rating;
+  @JsonKey(name: "sold")
+  int? sold;
+  @JsonKey(name: "images")
+  List<String>? images;
+  @JsonKey(name: "subcategory")
+  List<Subcategory>? subcategory;
+  @JsonKey(name: "ratingsQuantity")
+  int? ratingsQuantity;
+  @JsonKey(name: "_id")
+  String? id;
+  @JsonKey(name: "title")
+  String? title;
+  @JsonKey(name: "slug")
+  String? slug;
+  @JsonKey(name: "description")
+  String? description;
+  @JsonKey(name: "quantity")
+  int? quantity;
+  @JsonKey(name: "price")
+  int? price;
+  @JsonKey(name: "imageCover")
+  String? imageCover;
+  @JsonKey(name: "category")
+  Category? category;
+  @JsonKey(name: "brand")
+  Brand? brand;
+  @JsonKey(name: "ratingsAverage")
+  double? ratingsAverage;
+  @JsonKey(name: "createdAt")
+  DateTime? createdAt;
+  @JsonKey(name: "updatedAt")
+  DateTime? updatedAt;
+  @JsonKey(name: "id")
+  String? datumId;
 
   ProductDTO({
+    this.sold,
+    this.images,
+    this.subcategory,
+    this.ratingsQuantity,
     this.id,
-    this.name,
+    this.title,
+    this.slug,
     this.description,
+    this.quantity,
     this.price,
-    this.imageUrl,
+    this.imageCover,
     this.category,
-    this.rating,
+    this.brand,
+    this.ratingsAverage,
+    this.createdAt,
+    this.updatedAt,
+    this.datumId,
   });
-
-  factory ProductDTO.fromJson(Map<String, dynamic> json) {
-    return ProductDTO(
-      id: json['id'],
-      name: json['name'],
-      description: json['description'],
-      price: (json['price'] as num?)?.toDouble(),
-      imageUrl: json['imageUrl'],
-      category: json['category'],
-      rating: (json['rating'] as num?)?.toDouble(),
-    );
-  }
 
   ProductEntity toDomain() {
     return ProductEntity(
-      id: id ?? 0,
-      name: name ?? '',
-      description: description ?? '',
-      price: price ?? 0.0,
-      imageUrl: imageUrl ?? '',
-      category: category ?? '',
-      rating: rating ?? 0.0,
+      name: title ?? "",
+      imageUrl: imageCover ?? "",
+      rating: ratingsAverage ?? 0.0,
+      id: id ?? "",
+      description: description ?? "",
+      price: price ?? 0,
+      category: category?.id ?? "",
     );
   }
+
+  factory ProductDTO.fromJson(Map<String, dynamic> json) =>
+      _$ProductDTOFromJson(json);
+
+  Map<String, dynamic> toJson() => _$ProductDTOToJson(this);
 }
