@@ -1,5 +1,6 @@
 import 'dart:developer';
 
+import 'package:elevate_cycle6/config/base_response/base_response.dart';
 import 'package:elevate_cycle6/features/home/domain/entities/product_entity.dart';
 import 'package:elevate_cycle6/features/home/domain/usecases/get_categories_usecase.dart';
 import 'package:elevate_cycle6/features/home/domain/usecases/get_products_usecase.dart';
@@ -15,13 +16,22 @@ class HomeViewModel {
   void getProducts() async {
     log('getProducts called', name: 'HomeViewModel');
     //loading
-    final List<ProductEntity> productList = await getProductsUseCase();
+    final BaseResponse<List<ProductEntity>> productsResponse =
+        await getProductsUseCase();
+    switch (productsResponse) {
+      case SuccessResponse<List<ProductEntity>>():
+        final productList = productsResponse.data;
+        for (var product in productList) {
+          log(product.toString());
+        }
 
-    for (var product in productList) {
-      log(product.toString());
+        break;
+      case ErrorResponse<List<ProductEntity>>():
+        log(
+          'Custom Error: ${productsResponse.errMessage}',
+          name: 'HomeViewModel',
+        );
     }
-
-    //success --- error
   }
 
   void getCategories() {

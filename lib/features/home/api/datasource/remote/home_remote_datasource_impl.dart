@@ -1,3 +1,4 @@
+import 'package:elevate_cycle6/config/base_response/base_response.dart';
 import 'package:elevate_cycle6/features/home/api/client/home_api_client.dart';
 import 'package:elevate_cycle6/features/home/data/datasource/remote/home_remote_datasource.dart';
 import 'package:elevate_cycle6/features/home/data/models/product_dto.dart';
@@ -15,8 +16,14 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<List<ProductDTO>> getProducts() async {
-    final ProductsResponse productsResponse = await homeApiClient.getProducts();
-    return productsResponse.data ?? [];
+  Future<BaseResponse<List<ProductDTO>>> getProducts() async {
+  
+    try {
+       ProductsResponse productsResponse = await homeApiClient
+          .getProducts();
+      return SuccessResponse<List<ProductDTO>>(productsResponse.data ?? []);
+    } on Exception catch (e) {
+      return ErrorResponse<List<ProductDTO>>(error:e);
+    }
   }
 }
