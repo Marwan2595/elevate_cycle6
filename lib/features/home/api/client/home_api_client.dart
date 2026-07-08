@@ -13,5 +13,5 @@ abstract class HomeApiClient {
   factory HomeApiClient(Dio dio) = _HomeApiClient;
 
   @GET(Endpoints.getProductsEndpoint)
-  Future<ProductsResponse> getProducts();
+  Future<ProductsResponse> getProducts({@Query('category') String? categoryId});
 }

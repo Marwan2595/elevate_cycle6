@@ -3,5 +3,5 @@ import 'package:elevate_cycle6/features/home/data/models/product_dto.dart';
 
 abstract class HomeRemoteDataSource {
   Future<List<String>> getCategories(); //abstract method
-  Future<BaseResponse<List<ProductDTO>>> getProducts(); //abstract method
+  Future<BaseResponse<List<ProductDTO>>> getProducts({String categoryId = ''}); //abstract method
 }

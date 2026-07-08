@@ -11,7 +11,7 @@ class GetProductsUseCase {
     String categoryId = '',
   }) async {
     final BaseResponse<List<ProductEntity>> productsList = await homeRepo
-        .getProducts();
+        .getProducts(categoryId: categoryId);
     return productsList;
   }
 }

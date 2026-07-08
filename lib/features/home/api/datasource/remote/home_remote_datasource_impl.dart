@@ -16,11 +16,11 @@ class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   }
 
   @override
-  Future<BaseResponse<List<ProductDTO>>> getProducts() async {
-  
+  Future<BaseResponse<List<ProductDTO>>> getProducts({String categoryId = ''}) async {
+
     try {
        ProductsResponse productsResponse = await homeApiClient
-          .getProducts();
+          .getProducts(categoryId: categoryId);
       return SuccessResponse<List<ProductDTO>>(productsResponse.data ?? []);
     } on Exception catch (e) {
       return ErrorResponse<List<ProductDTO>>(error:e);
