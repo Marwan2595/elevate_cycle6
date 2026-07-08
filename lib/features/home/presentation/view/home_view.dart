@@ -13,7 +13,7 @@ class HomeView extends StatelessWidget {
     HomeViewModel viewModel = getIt.get<HomeViewModel>();
 
     return BlocProvider<HomeViewModel>(
-      create: (context) => viewModel..getProducts(),
+      create: (context) => viewModel..getData(),
       child: Scaffold(
         appBar: AppBar(title: const Text(UiStrings.appName)),
         body: SafeArea(
@@ -24,44 +24,67 @@ class HomeView extends StatelessWidget {
               children: [
                 BlocConsumer<HomeViewModel, HomeState>(
                   builder: (context, state) {
-                    switch (state) {
-                      case HomeInitialState():
-                        return Center(child: Text("Initial"));
-                      case HomeLoadingState():
-                        return const Center(child: CircularProgressIndicator());
-                      case HomeErrorState():
-                        return Center(child: Text(state.errorMessage));
-                      case HomeSuccessState():
-                        final products = state.products;
-                        return ProductsHorizontalList(
-                          title: 'Best Sellers',
-                          products: products,
-                          onProductTap: (product) {
-                            // Handle product tap
-                          },
-                        );
+                    if (state.products1State?.isLoading ?? false) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state.products1State?.errorMessage.isNotEmpty ??
+                        false) {
+                      return Center(
+                        child: Text(state.products1State!.errorMessage),
+                      );
+                    } else if (state.products1State?.data?.isNotEmpty ??
+                        false) {
+                      return ProductsHorizontalList(
+                        title: 'Best Sellers',
+                        products: state.products1State!.data!,
+                        onProductTap: (product) {
+                          // Handle product tap
+                        },
+                      );
+                    } else {
+                      return const SizedBox.shrink();
                     }
                   },
 
                   listener: (context, state) {
-                    if (state is HomeErrorState) {
+                    if (state.products1State?.errorMessage.isNotEmpty ??
+                        false) {
                       ScaffoldMessenger.of(context).showSnackBar(
                         SnackBar(
-                          content: Text("Listener: " + state.errorMessage),
+                          content: Text(
+                            "Listener: " + state.products1State!.errorMessage,
+                          ),
                         ),
                       );
                     }
                   },
                   listenWhen: (previous, current) {
-                    if (current is HomeErrorState) {
+                    if (current.products1State?.errorMessage.isNotEmpty ??
+                        false) {
                       return true;
                     }
                     return false;
                   },
                 ),
-
                 const SizedBox(height: 24),
-                ProductsHorizontalList(title: '2nd list', products: []),
+                BlocBuilder<HomeViewModel, HomeState>(
+                  builder: (context, state) {
+                    if (state.isLoading2) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (state.errorMessage2.isNotEmpty) {
+                      return Center(child: Text(state.errorMessage2));
+                    } else if (state.products2.isNotEmpty) {
+                      return ProductsHorizontalList(
+                        title: 'Best Sellers',
+                        products: state.products2,
+                        onProductTap: (product) {
+                          // Handle product tap
+                        },
+                      );
+                    } else {
+                      return const SizedBox.shrink();
+                    }
+                  },
+                ),
               ],
             ),
           ),

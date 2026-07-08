@@ -14,10 +14,19 @@ class HomeViewModel extends Cubit<HomeState> {
   final GetCategoriesUseCase getCategoriesUseCase;
 
   HomeViewModel(this.getProductsUseCase, this.getCategoriesUseCase)
-    : super(HomeInitialState());
+    : super(HomeState());
 
-  void getProducts() async {
-    emit(HomeLoadingState()); // state = HomeLoadingState();
+  void getData() {
+    getProducts1();
+    getProducts2();
+  }
+
+  void getProducts1() async {
+    emit(
+      state.copyWith(
+        products1StateArgument: state.products1State?.copyWith(isLoading: true),
+      ),
+    ); // loading1 = true;
     await Future.delayed(const Duration(seconds: 2)); // Simulate network delay
     log('getProducts called', name: 'HomeViewModel');
     final BaseResponse<List<ProductEntity>> productsResponse =
@@ -29,8 +38,14 @@ class HomeViewModel extends Cubit<HomeState> {
           log(product.toString());
         }
         emit(
-          HomeSuccessState(productList),
+          state.copyWith(
+            products1StateArgument: state.products1State?.copyWith(
+              isLoading: false,
+              data: productList,
+            ),
+          ),
         ); // state = HomeSuccessState(productList);
+
         break;
       case ErrorResponse<List<ProductEntity>>():
         log(
@@ -38,17 +53,28 @@ class HomeViewModel extends Cubit<HomeState> {
           name: 'HomeViewModel',
         );
         emit(
-          HomeErrorState('Custom Error: ${productsResponse.errMessage}'),
+          state.copyWith(
+            products1StateArgument: state.products1State?.copyWith(
+              isLoading: false,
+              errorMessage: 'Custom Error: ${productsResponse.errMessage}',
+            ),
+          ),
         ); // state = HomeErrorState(productsResponse.errMessage);
     }
+    log(
+      'isLoading 1: ${state.products1State?.isLoading}',
+      name: 'HomeViewModel',
+    );
   }
 
   void getProducts2() async {
-    emit(HomeLoadingState()); // state = HomeLoadingState();
+    emit(
+      state.copyWith(isLoading2Argument: true, errorMessage2Argument: ''),
+    ); // loading2 = true;
     await Future.delayed(const Duration(seconds: 5)); // Simulate network delay
     log('getProducts called', name: 'HomeViewModel');
     final BaseResponse<List<ProductEntity>> productsResponse =
-        await getProductsUseCase(categoryId: "6439d5b90049ad0b52b90048");
+        await getProductsUseCase(categoryId: '6439d5b90049ad0b52b90048');
     switch (productsResponse) {
       case SuccessResponse<List<ProductEntity>>():
         final productList = productsResponse.data;
@@ -56,7 +82,10 @@ class HomeViewModel extends Cubit<HomeState> {
           log(product.toString());
         }
         emit(
-          HomeSuccessState(productList),
+          state.copyWith(
+            isLoading2Argument: false,
+            products2Argument: productList,
+          ),
         ); // state = HomeSuccessState(productList);
         break;
       case ErrorResponse<List<ProductEntity>>():
@@ -65,7 +94,11 @@ class HomeViewModel extends Cubit<HomeState> {
           name: 'HomeViewModel',
         );
         emit(
-          HomeErrorState('Custom Error: ${productsResponse.errMessage}'),
+          state.copyWith(
+            isLoading2Argument: false,
+            errorMessage2Argument:
+                'Custom Error: ${productsResponse.errMessage}',
+          ),
         ); // state = HomeErrorState(productsResponse.errMessage);
     }
   }
