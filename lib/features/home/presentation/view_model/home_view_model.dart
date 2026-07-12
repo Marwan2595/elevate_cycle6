@@ -17,10 +17,10 @@ class HomeViewModel extends Cubit<HomeState> {
   HomeViewModel(this._getProductsUseCase, this._getCategoriesUseCase)
     : super(HomeState());
   // Event Mapper or Transformer
-  void doEvent(HomeEvents event) {
+  void doIntent(HomeEvents event) {
     switch (event) {
       case GetALlDataEvent():
-        _getData();
+        _getLoginData();
         break;
       case GetProducts1Event():
         _getProducts1();
@@ -31,7 +31,7 @@ class HomeViewModel extends Cubit<HomeState> {
     }
   }
 
-  void _getData() {
+  void _getLoginData() {
     _getProducts1();
     _getProducts2();
   }
