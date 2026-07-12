@@ -20,7 +20,7 @@ class HomeViewModel extends Cubit<HomeState> {
   void doAction(HomeEvents event) {
     switch (event) {
       case GetALlDataEvent():
-        _getRegisterData();
+        _getLoginData();
         break;
       case GetProducts1Event():
         _getProducts1();
@@ -31,7 +31,7 @@ class HomeViewModel extends Cubit<HomeState> {
     }
   }
 
-  void _getRegisterData() {
+  void _getLoginData() {
     _getProducts1();
     _getProducts2();
   }
