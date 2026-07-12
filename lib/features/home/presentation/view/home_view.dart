@@ -1,5 +1,6 @@
 import 'package:elevate_cycle6/config/di/di.dart';
 import 'package:elevate_cycle6/core/constants/ui_strings.dart';
+import 'package:elevate_cycle6/features/home/presentation/view_model/home_events.dart';
 import 'package:elevate_cycle6/features/home/presentation/view_model/home_state.dart';
 import 'package:elevate_cycle6/features/home/presentation/view_model/home_view_model.dart';
 import 'package:elevate_cycle6/features/home/presentation/widgets/products_horizental_list.dart';
@@ -13,7 +14,7 @@ class HomeView extends StatelessWidget {
     HomeViewModel viewModel = getIt.get<HomeViewModel>();
 
     return BlocProvider<HomeViewModel>(
-      create: (context) => viewModel..getData(),
+      create: (context) => viewModel..doEvent(GetALlDataEvent()),
       child: Scaffold(
         appBar: AppBar(title: const Text(UiStrings.appName)),
         body: SafeArea(
