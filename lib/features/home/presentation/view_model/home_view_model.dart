@@ -119,7 +119,7 @@ class HomeViewModel extends Cubit<HomeState> {
   }
 
   void _getCategories() {
-    log('getCategories called', name: 'HomeViewModel');
+    log('getCategories edit on dev branch called', name: 'HomeViewModel');
     _getCategoriesUseCase();
   }
 }
