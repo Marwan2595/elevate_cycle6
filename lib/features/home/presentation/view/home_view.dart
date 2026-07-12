@@ -15,7 +15,7 @@ class HomeView extends StatelessWidget {
     // Remote Changes
     // Local Change
     return BlocProvider<HomeViewModel>(
-      create: (context) => viewModel..doIntent(GetALlDataEvent()),
+      create: (context) => viewModel..doAction(GetALlDataEvent()),
       child: Scaffold(
         appBar: AppBar(title: const Text(UiStrings.appName)),
         body: SafeArea(
