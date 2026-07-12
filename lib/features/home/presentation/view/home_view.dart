@@ -13,6 +13,7 @@ class HomeView extends StatelessWidget {
   Widget build(BuildContext context) {
     HomeViewModel viewModel = getIt.get<HomeViewModel>();
     // Remote Changes
+    // Local Change
     return BlocProvider<HomeViewModel>(
       create: (context) => viewModel..doEvent(GetALlDataEvent()),
       child: Scaffold(
