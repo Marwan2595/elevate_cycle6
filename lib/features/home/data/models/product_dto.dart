@@ -62,7 +62,7 @@ class ProductDTO {
 
   ProductEntity toDomain() {
     return ProductEntity(
-      name: title ?? "",
+      name: (title ?? "") + " Product",
       imageUrl: imageCover ?? "",
       rating: ratingsAverage ?? 0.0,
       id: id ?? "",

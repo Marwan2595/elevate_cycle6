@@ -20,11 +20,13 @@ dependencies:
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  test: ^1.30.0
   flutter_lints: ^6.0.0
   injectable_generator:
   build_runner: ^2.15.0
   retrofit_generator: ^10.0.1
   json_serializable: ^6.10.0
+  mockito: ^5.5.0
 
 flutter:
   uses-material-design: true

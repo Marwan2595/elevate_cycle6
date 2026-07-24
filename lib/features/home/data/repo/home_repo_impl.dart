@@ -12,6 +12,10 @@ class HomeRepoImpl implements HomeRepo {
   final HomeRemoteDataSource remoteDatasource;
   final HomeLocalDataSource localDatasource;
 
+
+  // success with productDTO non-empty list 5 products
+  // success with productDTO empty list
+  // error
   @override
   Future<BaseResponse<List<ProductEntity>>> getProducts({String categoryId = ''}) async {
     final BaseResponse<List<ProductDTO>> productsResponse =
