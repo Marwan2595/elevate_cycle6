@@ -1,0 +1,42 @@
+{
+    // Use IntelliSense to learn about possible attributes.
+    // Hover to view descriptions of existing attributes.
+    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Men Debug",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_men.dart",
+            "args": [
+                "--flavor",
+                "men"
+            ]
+        },
+        {
+            "name": "Women Debug",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_women.dart",
+            "flutterMode": "debug",
+            "args": [
+                "--flavor",
+                "women"
+            ]
+        },
+        {
+            "name": "Women Release",
+            "request": "launch",
+            "type": "dart",
+            "program": "lib/main_women.dart",
+            "flutterMode": "release",
+            "args": [
+                "--flavor",
+                "women"
+            ]
+        }
+    ]
+}
+// flutter run -t lib/main_men.dart --flavor men
+// flutter run -t lib/main_women.dart --flavor women
