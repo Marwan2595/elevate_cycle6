@@ -42,14 +42,14 @@ android {
     flavorDimensions += "default"
     productFlavors {
         create("men") {
-        //com.men.app
            dimension = "default"
            applicationIdSuffix = ".men"
+           resValue("string", "app_name", "Men")
         }
         create("women") {
-        //com.example.elevate_cycle6.women
             dimension = "default"
             applicationIdSuffix = ".women"
+            resValue("string", "app_name", "Women")
         }
     }
 
