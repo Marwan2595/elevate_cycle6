@@ -16,6 +16,16 @@ dependencies:
   json_annotation: ^4.9.0
   flutter_bloc: ^9.1.1
 
+  # Package Local Use
+  # cool_celebration:
+  #   path: ../cool_celebration
+  
+  # Package Remote Git Use
+  cool_celebration:
+    git:
+      url: https://github.com/Marwan2595/cool_celebration.git
+      ref: 2nd-animation  
+
 
 dev_dependencies:
   flutter_test:
