@@ -8,7 +8,11 @@ import 'package:injectable/injectable.dart';
 
 @LazySingleton(as: HomeRepo)
 class HomeRepoImpl implements HomeRepo {
-  HomeRepoImpl(this.remoteDatasource, this.localDatasource);
+  HomeRepoImpl(
+    // swap to @Named('api') to go back to the REST api
+    @Named('firebase') this.remoteDatasource,
+    this.localDatasource,
+  );
   final HomeRemoteDataSource remoteDatasource;
   final HomeLocalDataSource localDatasource;
 

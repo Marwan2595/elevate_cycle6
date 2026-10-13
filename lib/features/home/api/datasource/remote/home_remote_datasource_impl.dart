@@ -5,6 +5,7 @@ import 'package:elevate_cycle6/features/home/data/models/product_dto.dart';
 import 'package:elevate_cycle6/features/home/data/models/products_response.dart';
 import 'package:injectable/injectable.dart';
 
+@Named('api')
 @LazySingleton(as: HomeRemoteDataSource)
 class HomeRemoteDataSourceImpl implements HomeRemoteDataSource {
   HomeRemoteDataSourceImpl(this.homeApiClient);

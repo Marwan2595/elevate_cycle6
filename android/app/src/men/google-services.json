@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "142528646507",
+    "project_id": "elevate-c6",
+    "storage_bucket": "elevate-c6.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:142528646507:android:1f0a22f151755f6151102e",
+        "android_client_info": {
+          "package_name": "com.example.elevate_cycle6.men"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "142528646507-7edn48qb7f0nahinm7f6bt69t0mll1r3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.elevate_cycle6.men",
+            "certificate_hash": "2e3f9d051500151238108223524bb0036463f988"
+          }
+        },
+        {
+          "client_id": "142528646507-3ql6bl2k9bbh5u5vkers4edea3j5uv9l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBmZQX9fxUqE5lcVt2gF8EkcKHLZ5SqR2g"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "142528646507-3ql6bl2k9bbh5u5vkers4edea3j5uv9l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
