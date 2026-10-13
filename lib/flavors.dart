@@ -1,6 +1,7 @@
 import 'package:elevate_cycle6/core/theme/men_theme.dart';
 import 'package:elevate_cycle6/core/theme/women_theme.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 enum AppFlavor {
   men,
@@ -11,6 +12,17 @@ enum AppFlavor {
 class Flavor {
   static AppFlavor appFlavor = AppFlavor.men;
 
+  // Values come from the git-ignored `.env` file (loaded in mainCommon).
+  static String get baseUrl => dotenv.env['BASE_URL']!;
+
+  static String get googleMapsApiKey => dotenv.env['GOOGLE_MAPS_API_KEY']!;
+
+  /// Allowed server certificate SHA-256 fingerprints (SSL pinning).
+  static List<String> get sslPins => (dotenv.env['SSL_PINS'] ?? '')
+      .split(',')
+      .map((e) => e.trim())
+      .where((e) => e.isNotEmpty)
+      .toList();
 
 
   static String get productsCategoryID {

@@ -25,7 +25,6 @@ class HomeState {
   final bool isLoading2; //true
   final String errorMessage2;
   final List<ProductEntity> products2; //after 5 sec, list of products
-
   HomeState({
     this.products1State,
     this.isLoading2 = false,

@@ -6,6 +6,8 @@ import 'package:elevate_cycle6/features/home/domain/usecases/get_categories_usec
 import 'package:elevate_cycle6/features/home/domain/usecases/get_products_usecase.dart';
 import 'package:elevate_cycle6/features/home/presentation/view_model/home_events.dart';
 import 'package:elevate_cycle6/features/home/presentation/view_model/home_state.dart';
+import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:injectable/injectable.dart';
 
